@@ -48,6 +48,7 @@ class PdfView extends StatefulWidget {
     this.scrollDirection = Axis.horizontal,
     this.pageSnapping = true,
     this.physics,
+    this.scale,
     this.loaderSwitchDuration = const Duration(seconds: 1),
     Key key,
   })  : assert(pageSnapping != null),
@@ -95,6 +96,9 @@ class PdfView extends StatefulWidget {
   /// Determines the physics of a [PdfView] widget.
   final ScrollPhysics physics;
 
+  /// Initial scale
+  final double scale;
+
   /// Default PdfRenderer options
   static Future<PdfPageImage> _render(PdfPage page) => page.render(
         width: page.width * 2,
@@ -127,7 +131,7 @@ class PdfView extends StatefulWidget {
         speed: 1,
         inertialSpeed: 100,
         inPageView: true,
-        initialScale: 1.0,
+        initialScale: scale ?? 1.0,
         cacheGesture: false,
       ),
       onDoubleTap: (ExtendedImageGestureState state) {
