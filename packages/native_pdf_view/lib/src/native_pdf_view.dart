@@ -129,6 +129,7 @@ class PdfView extends StatefulWidget {
         animationMinScale: .75,
         animationMaxScale: 3.0,
         speed: 1,
+        initialAlignment: InitialAlignment.topCenter,
         inertialSpeed: 100,
         inPageView: true,
         initialScale: scale ?? 1.0,
@@ -174,6 +175,7 @@ class PdfView extends StatefulWidget {
         child: image,
       );
     }
+    print(scale);
     return image;
   }
 
@@ -258,11 +260,9 @@ class _PdfViewState extends State<PdfView> with SingleTickerProviderStateMixin {
                   key: Key('$runtimeType.page.'
                       '${widget.controller._document.hashCode}.'
                       '${_pages[index].pageNumber}'),
-                  child: widget.pageBuilder(
-                    _pages[index],
-                    index == _currentIndex,
-                    _animationController,
-                  ),
+                  child: widget.pageBuilder(_pages[index],
+                      index == _currentIndex, _animationController,
+                      scale: widget.scale),
                 );
               }
 
