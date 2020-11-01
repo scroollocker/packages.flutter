@@ -13,8 +13,7 @@ dependencies:
   extended_image: ^1.0.0
   synchronized: ^2.2.0+2
   device_info: ^0.4.2+4
-  native_pdf_renderer: 
-    path: ../native_pdf_renderer
+  native_pdf_renderer: ^2.3.2
 
 dev_dependencies:
   flutter_test:
