@@ -19,15 +19,18 @@ export 'package:extended_image/extended_image.dart';
 part 'native_pdf_controller.dart';
 
 typedef PDFViewPageBuilder = Widget Function(
-  /// Page image model
-  PdfPageImage pageImage,
 
-  /// true if page now showed
-  bool isCurrentIndex,
+    /// Page image model
+    PdfPageImage pageImage,
 
-  /// onDoubleTap Animation
-  AnimationController animationController,
-);
+    /// true if page now showed
+    bool isCurrentIndex,
+
+    /// onDoubleTap Animation
+    AnimationController animationController,
+
+    /// scale
+    {double scale});
 
 typedef PDFViewPageRenderer = Future<PdfPageImage> Function(PdfPage page);
 
@@ -96,7 +99,6 @@ class PdfView extends StatefulWidget {
   /// Determines the physics of a [PdfView] widget.
   final ScrollPhysics physics;
 
-  /// Initial scale
   final double scale;
 
   /// Default PdfRenderer options
@@ -110,11 +112,9 @@ class PdfView extends StatefulWidget {
   static const List<double> _doubleTapScales = <double>[1.0, 2.0, 3.0];
 
   /// Default page builder
-  static Widget _pageBuilder(
-    PdfPageImage pageImage,
-    bool isCurrentIndex,
-    AnimationController animationController,
-  ) {
+  static Widget _pageBuilder(PdfPageImage pageImage, bool isCurrentIndex,
+      AnimationController animationController,
+      {double scale}) {
     Animation<double> _doubleTapAnimation;
     void Function() _animationListener;
 
